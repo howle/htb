@@ -1,12 +1,14 @@
-#quick funtion to print root credentials for new pwnbox instance at HTB
-#Will always be stored in $HOME/Desktop/my_credentials
-#Use find instead of referenced path - to allow root usage if needed for any reason
-
-#usage: 
-#toor
-
 #!/bin/bash
+
+#quick funtion to print root credentials for new pwnbox instance at HTB
+
+
+#EX: source cred.func
+#EX:  toor
+
 toor() {
+
+#using find instead of absolute path to allow optional root usage
 
 awk '{print $2}' $(find /home -type f -name "my_credentials.txt" 2>/dev/null) | tail -n1
 }
