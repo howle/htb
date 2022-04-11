@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# FORSTARTERS FUNCTION
+#Grab network details of target
+# runs ICMP check @ 5 count
+#all port nmap scan (1st pass)
+#detailed nmap scan of 1st pass (2nd pass)
+#output dirs nmap/$TARGET_IP_$EPOCH_allports #scan1
+#output dirs nmap/$TARGET_IP_$EPOCH_detail #scan2
+
+
+
+#ex: fstarters 10.10.10.10 
+
+fstarters() {
+  time_epoch=$(date +%s)
+ echo "checking icmp @5 for $1"
+  ping -c 5 $1  
+if [  -d ./nmap/ ]; then
+  echo "-----------------------------------------------------"
+  echo "Running scan on $1 - Storing in nmap/$1_${time_epoch}_allport";
+  echo "-----------------------------------------------------"
+  nmap -p- --min-rate 10000 -oA nmap/$1_${time_epoch}_allport -v $1;
+  
+  port_scoop=$(grep -Eo  "[0-9]{1,10000}\/open"  nmap/$1_${time_epoch}_allport.gnmap  | sed -e ':a;N;$!ba;s/\n/ /g' -e 's:/open::g' -e 's/ /, /g' )
+  echo "================================================"
+  echo "Doing more detailed scan of $port_scoop"
+  echo "saving in nmap/$1_${time_epoch}_detail"
+  echo "================================================"
+  nmap -sC -sV -oA nmap/$1_${time_epoch}_detail -v $port_scoop $1
+else
+    echo “dir nmap not found - creating directory in $PWD”;
+    mkdir nmap;
+    echo "==============================================="
+    echo "Running scan on $1 - Storing in nmap/$1_allports";
+    echo "================================================="
+    echo ""
+nmap -p- --min-rate 10000 -oA nmap/$1_${time_epoch}_allport -v $1;
+port_scoop=$(grep -Eo "[0-9]{1,10000)\/open" nmap/$1_${time_epoch}_allport.gnmap |  sed -e ':a;N;$!ba;s/\n/ /g' -e 's:/open::g' -e 's/ /, /g') 
+
+echo "======================================================"
+echo "Doing more detailed scan of $port_scoop"
+echo "saving in nmap/$1_${time_epoch}_detail"
+nmap -sC -sV -oA nmap/$1_${time_epoch}_detail -v $port_scoop $1
+
+
+fi
+
+
+
+}
