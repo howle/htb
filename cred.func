@@ -1,4 +1,4 @@
-#quick funtion to pull root credentials for new pwnbox instance at HTB
+#quick funtion to print root credentials for new pwnbox instance at HTB
 #Will always be stored in $HOME/Desktop/my_credentials
 #Use find instead of referenced path - to allow root usage if needed for any reason
 
