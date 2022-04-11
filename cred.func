@@ -1,5 +1,10 @@
-#set toor as default pwnbox password
-#quick funtion to pull root credentials for new instance
+#quick funtion to pull root credentials for new pwnbox instance at HTB
+#Will always be stored in $HOME/Desktop/my_credentials
+#Use find instead of referenced path - to allow root usage if needed for any reason
+
+#usage: 
+#toor
+
 #!/bin/bash
 toor() {
 
