@@ -11,4 +11,5 @@ toor() {
 #using find instead of absolute path to allow optional root usage
 
 awk '{print $2}' $(find /home -type f -name "my_credentials.txt" 2>/dev/null) | tail -n1
+
 }
