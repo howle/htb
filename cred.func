@@ -1,0 +1,7 @@
+#set toor as default pwnbox password
+#quick funtion to pull root credentials for new instance
+#!/bin/bash
+toor() {
+
+awk '{print $2}' $(find /home -type f -name "my_credentials.txt" 2>/dev/null) | tail -n1
+}
