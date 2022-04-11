@@ -1,6 +1,16 @@
-# htb
+# Creating a few functions for pwnbox htb / pentest tooling
 
+toor to pull credentials
+fstarters to do network scan 
+
+## Installation
+
+source file.func
+```bash
 fstarters 10.129.96.68 
+
+
+
 checking icmp @5 for 10.129.96.68
 PING 10.129.96.68 (10.129.96.68) 56(84) bytes of data.
 64 bytes from 10.129.96.68: icmp_seq=1 ttl=63 time=75.7 ms
@@ -106,3 +116,15 @@ Completed NSE at 06:36, 0.00s elapsed
 Read data files from: /usr/bin/../share/nmap
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 2 IP addresses (1 host up) scanned in 13.57 seconds
+
+```
+
+
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
